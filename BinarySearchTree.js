@@ -35,6 +35,15 @@ class BinarySearchTree {
       }
     }
   }
+
+  // In-order traversal: Visit left subtree, root, then right subtree
+  inOrderTraversal(currentNode, callback) {
+    if (currentNode !== null) {
+      this.inOrderTraversal(currentNode.left, callback);
+      callback(currentNode.data);
+      this.inOrderTraversal(currentNode.right, callback);
+    }
+  }
 }
 
 // Example usage
@@ -46,3 +55,6 @@ tree.insert(3);
 tree.insert(7);
 
 // This is a basic implementation and doesn't include functionalities like traversal or searching. You can extend it further based on your needs.
+const inOrderValues = [];
+tree.inOrderTraversal(tree.root, (data) => inOrderValues.push(data));
+console.log("In-order traversal:", inOrderValues); // Output: [3, 5, 7, 10, 15]
